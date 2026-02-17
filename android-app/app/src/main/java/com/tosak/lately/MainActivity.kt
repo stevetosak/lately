@@ -3,41 +3,50 @@ package com.tosak.lately
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.mapbox.geojson.Point
-import com.mapbox.maps.extension.compose.MapboxMap
-import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
-import com.mapbox.maps.plugin.attribution.Attribution
-import com.mapbox.maps.plugin.scalebar.ScaleBar
+import androidx.compose.ui.unit.LayoutDirection
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.tosak.lately.components.LatelyBottomBar
+import com.tosak.lately.navigation.Destinations
+import com.tosak.lately.navigation.NavGraph
+import com.tosak.lately.ui.theme.LatelyTheme
 
-public class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MapboxMap(
-                Modifier.fillMaxSize(),
-                mapViewportState = rememberMapViewportState {
-                    setCameraOptions {
-                        zoom(2.0)
-                        center(Point.fromLngLat(-98.0, 39.5))
-                        pitch(0.0)
-                        bearing(0.0)
-                    }
-                },
-                scaleBar = {
-                    ScaleBar(Modifier.padding(top = 60.dp))
-                },
-                logo = {
-                    Logo(Modifier.padding(bottom = 40.dp))
-                },
-                attribution = {
-                    Attribution(Modifier.padding(bottom = 40.dp))
-                }
-            )
+            LatelyTheme {
+                MainScreen()
+            }
         }
+    }
+}
+
+@Composable
+fun MainScreen() {
+    val navController = rememberNavController()
+    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+
+    Scaffold(
+        bottomBar = {
+            if (currentRoute != Destinations.Messages.route) {
+                LatelyBottomBar(navController)
+            }
+        }
+    ) { paddingValues ->
+        NavGraph(
+            navController = navController,
+            modifier = Modifier.padding(
+                top = paddingValues.calculateTopPadding(),
+                start = paddingValues.calculateStartPadding(LayoutDirection.Ltr),
+                end = paddingValues.calculateEndPadding(LayoutDirection.Ltr)
+            )
+        )
     }
 }
