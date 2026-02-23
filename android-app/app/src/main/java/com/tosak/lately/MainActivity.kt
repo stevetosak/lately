@@ -16,7 +16,9 @@ import com.tosak.lately.components.LatelyBottomBar
 import com.tosak.lately.navigation.Destinations
 import com.tosak.lately.navigation.NavGraph
 import com.tosak.lately.ui.theme.LatelyTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,7 @@ fun MainScreen() {
 
     Scaffold(
         bottomBar = {
-            if (currentRoute != Destinations.Messages.route) {
+            if (currentRoute in Destinations.bottomBarRoutes) {
                 LatelyBottomBar(navController)
             }
         }
