@@ -30,7 +30,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.tosak.lately.R
-import com.tosak.lately.components.AppTopBar
+import com.tosak.lately.core.ui.components.AppTopBar
 import com.tosak.lately.features.profile.components.ProfileAvatar
 
 

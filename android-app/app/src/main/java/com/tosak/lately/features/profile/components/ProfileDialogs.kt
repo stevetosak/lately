@@ -1,7 +1,7 @@
 package com.tosak.lately.features.profile.components
 
 import androidx.compose.runtime.Composable
-import com.tosak.lately.components.ConfirmDialog
+import com.tosak.lately.core.ui.components.ConfirmDialog
 
 @Composable
 fun DeactivateAccountDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {

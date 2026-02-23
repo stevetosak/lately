@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 import com.mapbox.geojson.Point
 import com.mapbox.maps.extension.compose.MapboxMap
 import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
-import com.tosak.lately.components.LatelyTopBar
+import com.tosak.lately.core.ui.components.LatelyTopBar
 import com.tosak.lately.navigation.Destinations
 
 @OptIn(ExperimentalMaterial3Api::class)

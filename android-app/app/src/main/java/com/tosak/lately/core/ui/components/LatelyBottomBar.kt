@@ -1,4 +1,4 @@
-package com.tosak.lately.components
+package com.tosak.lately.core.ui.components
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState

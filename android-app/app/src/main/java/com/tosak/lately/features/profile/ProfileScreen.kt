@@ -13,8 +13,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.tosak.lately.navigation.Destinations
-import com.tosak.lately.components.DestructiveButton
-import com.tosak.lately.components.ScreenLoading
+import com.tosak.lately.core.ui.components.DestructiveButton
+import com.tosak.lately.core.ui.components.ScreenLoading
 import com.tosak.lately.features.profile.components.DeactivateAccountDialog
 import com.tosak.lately.features.profile.components.ProfileActionsCard
 import com.tosak.lately.features.profile.components.ProfileHeader
