@@ -3,13 +3,9 @@ package com.tosak.lately.navigation
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,8 +13,6 @@ import com.tosak.lately.features.chats.MessagesScreen
 import com.tosak.lately.features.map.MapScreen
 import com.tosak.lately.features.notifications.NotificationsScreen
 import com.tosak.lately.features.archivedstories.ArchivedStoriesScreen
-import com.tosak.lately.features.archivedstories.ArchivedStoriesViewModel
-import com.tosak.lately.features.archivedstories.StoryViewerScreen
 import com.tosak.lately.features.profile.edit.EditProfileScreen
 import com.tosak.lately.features.friends.FriendsScreen
 import com.tosak.lately.features.profile.ProfileScreen

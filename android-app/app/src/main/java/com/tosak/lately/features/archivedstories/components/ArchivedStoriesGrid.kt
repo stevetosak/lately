@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.tosak.lately.features.archivedstories.ArchivedStory
-import com.tosak.lately.navigation.Destinations
 
 @Composable
 fun ArchivedStoriesGrid(
@@ -37,11 +36,7 @@ fun ArchivedStoriesGrid(
     items(stories, key = { it.id }) { story ->
       ArchivedStoryCard(
         story = story,
-        onClick = {
-          navController.navigate(
-            Destinations.StoryViewer.route(story.id)
-          )
-        }
+        onClick = { }
       )
     }
   }
