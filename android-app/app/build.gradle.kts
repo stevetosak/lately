@@ -58,6 +58,7 @@ android {
     }
 }
 
+
 dependencies {
     // Core
     implementation(libs.androidx.core.ktx)
@@ -93,6 +94,9 @@ dependencies {
     // Compose Hilt integration
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     kapt("androidx.hilt:hilt-compiler:1.1.0")
+
+    implementation(libs.play.services.location)
+    implementation("com.google.accompanist:accompanist-permissions:0.37.3")
 
     // Testing
     testImplementation(libs.junit)
