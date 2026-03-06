@@ -25,7 +25,7 @@ fun MapLocationEffect(
     val locationPermission = rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
 
     LaunchedEffect(Unit) {
-        mapViewModel.fetchLocation()
+        mapViewModel.fetchLocation(simulateDelay = true)
     }
 
     LaunchedEffect(locationPermission.status) {

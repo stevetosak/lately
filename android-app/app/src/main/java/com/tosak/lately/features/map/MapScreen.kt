@@ -7,8 +7,11 @@ import androidx.annotation.RequiresPermission
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -54,7 +57,7 @@ fun MapScreen(navController: NavController) {
         }
     }
 
-    MapLocationEffect(mapViewModel = mapViewModel, mapViewportState = mapViewportState)
+
 
     Scaffold(
         topBar = {
@@ -81,6 +84,17 @@ fun MapScreen(navController: NavController) {
             ) {
                 UserLocationEffect(userLocation, testUser)
                 StoryEffect(userLocation = userLocation, storyViewModel = storyViewModel)
+                MapLocationEffect(mapViewModel = mapViewModel, mapViewportState = mapViewportState)
+            }
+
+            if(userLocation == null){
+                Surface(color = MaterialTheme.colorScheme.background.copy(alpha = 0.6f)) {
+                Box(modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center){
+
+                        CircularProgressIndicator();
+                    }
+                }
             }
 
             CameraModeButton(
