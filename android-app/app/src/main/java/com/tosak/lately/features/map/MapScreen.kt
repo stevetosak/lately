@@ -4,7 +4,9 @@ import android.Manifest
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
@@ -13,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,6 +34,7 @@ import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportS
 import com.tosak.lately.core.ui.components.LatelyTopBar
 import com.tosak.lately.features.map.components.CameraMode
 import com.tosak.lately.features.map.components.CameraModeButton
+import com.tosak.lately.features.map.components.CurrentLocationButton
 import com.tosak.lately.features.map.components.UserLocationEffect
 import com.tosak.lately.features.map.data.testUser
 import com.tosak.lately.features.stories.StoryViewModel
@@ -47,6 +51,11 @@ fun MapScreen(navController: NavController) {
     val userLocation by mapViewModel.userLocation.collectAsStateWithLifecycle()
     var currentCameraMode by remember { mutableStateOf(CameraMode.STREET) }
 
+    var currentCameraOptions by remember { mutableStateOf(cameraOptions {
+        zoom(2.0)
+        pitch(0.0)
+        bearing(0.0)
+    }) }
 
     val mapViewportState = rememberMapViewportState {
         setCameraOptions {
@@ -54,6 +63,16 @@ fun MapScreen(navController: NavController) {
             center(Point.fromLngLat(-98.0, 39.5))
             pitch(0.0)
             bearing(0.0)
+        }
+    }
+
+
+    LaunchedEffect(mapViewportState.cameraState) {
+        currentCameraOptions = cameraOptions {
+            zoom(mapViewportState.cameraState?.zoom)
+            pitch(mapViewportState.cameraState?.pitch)
+            bearing(mapViewportState.cameraState?.bearing)
+            center(mapViewportState.cameraState?.center)
         }
     }
 
@@ -87,31 +106,49 @@ fun MapScreen(navController: NavController) {
                 MapLocationEffect(mapViewModel = mapViewModel, mapViewportState = mapViewportState)
             }
 
-            if(userLocation == null){
+            if (userLocation == null) {
                 Surface(color = MaterialTheme.colorScheme.background.copy(alpha = 0.6f)) {
-                Box(modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center){
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
 
                         CircularProgressIndicator();
                     }
                 }
             }
 
-            CameraModeButton(
-                currentMode = currentCameraMode,
-                onModeSelected = { mode ->
-                    currentCameraMode = mode
-                    mapViewportState.flyTo(
-                        cameraOptions {
-                            pitch(mode.pitch)
-                            zoom(mode.zoom)
-                        }
-                    )
-                },
+            Row(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .padding(16.dp)
-            )
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                CurrentLocationButton(flyToCurrentLocation = {
+                    userLocation?.let {
+                        val point = Point.fromLngLat(it.longitude,it.latitude)
+                        mapViewportState.flyTo(cameraOptions {
+                            center(point)
+                            zoom(CameraMode.STREET.zoom)
+                            pitch(CameraMode.STREET.pitch)
+                            bearing(currentCameraOptions.bearing)
+                        })
+                    }
+
+                })
+                CameraModeButton(
+                    currentMode = currentCameraMode,
+                    onModeSelected = { mode ->
+                        currentCameraMode = mode
+                        mapViewportState.flyTo(
+                            cameraOptions {
+                                pitch(mode.pitch)
+                                zoom(mode.zoom)
+                            }
+                        )
+                    }
+                )
+            }
         }
     }
 }

@@ -42,7 +42,7 @@ fun CameraModeButton(
         IconButton(
             onClick = { expanded = true },
             modifier = Modifier
-                .background(Color.White, CircleShape)
+                .background(Color.Gray, CircleShape)
                 .size(48.dp)
         ) {
             Icon(
