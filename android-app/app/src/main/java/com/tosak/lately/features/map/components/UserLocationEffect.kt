@@ -17,7 +17,7 @@ fun UserLocationEffect(userLocation: Location?,user: User){
             ViewAnnotation(
                 options = viewAnnotationOptions {
                     geometry(point)
-                    allowOverlap(false)
+                    allowOverlap(true)
                 }
             ) {
                 UserMarker(
