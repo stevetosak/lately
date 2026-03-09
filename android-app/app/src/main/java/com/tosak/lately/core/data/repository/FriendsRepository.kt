@@ -33,43 +33,22 @@ class FriendsRepository @Inject constructor() {
       Friend("7", "Luca Ferraro", "@lucaferraro", avatarUrl = "https://randomuser.me/api/portraits/men/13.jpg"),
       Friend("8", "Nadia Wolff", "@nadiawolff", avatarUrl = "https://randomuser.me/api/portraits/women/17.jpg"),
       Friend("9", "Oliver Chen", "@oliverchen", avatarUrl = "https://randomuser.me/api/portraits/men/21.jpg"),
-      Friend("10", "Amelia Rossi", "@ameliarossi", avatarUrl = "https://randomuser.me/api/portraits/women/22.jpg"),
-      Friend("11", "Mateo Silva", "@mateosilva", avatarUrl = "https://randomuser.me/api/portraits/men/23.jpg"),
-      Friend("12", "Isabella Cruz", "@isabellacruz", avatarUrl = "https://randomuser.me/api/portraits/women/24.jpg"),
-      Friend("13", "Noah Kim", "@noahkim", avatarUrl = "https://randomuser.me/api/portraits/men/25.jpg"),
-      Friend("14", "Layla Ahmed", "@laylaahmed", avatarUrl = "https://randomuser.me/api/portraits/women/26.jpg"),
-      Friend("15", "Sebastian Müller", "@sebastianmuller", avatarUrl = "https://randomuser.me/api/portraits/men/27.jpg"),
-      Friend("16", "Ava Thompson", "@avathompson", avatarUrl = "https://randomuser.me/api/portraits/women/28.jpg"),
-      Friend("17", "Hiro Tanaka", "@hiro", avatarUrl = "https://randomuser.me/api/portraits/men/29.jpg"),
-      Friend("18", "Chloe Dubois", "@chloedubois", avatarUrl = "https://randomuser.me/api/portraits/women/30.jpg"),
-      Friend("19", "Diego Morales", "@diegomorales", avatarUrl = "https://randomuser.me/api/portraits/men/31.jpg"),
-      Friend("20", "Emma Johansson", "@emmajohansson", avatarUrl = "https://randomuser.me/api/portraits/women/32.jpg"),
-      Friend("21", "Arjun Mehta", "@arjunmehta", avatarUrl = "https://randomuser.me/api/portraits/men/33.jpg"),
-      Friend("22", "Sienna Brown", "@siennabrown", avatarUrl = "https://randomuser.me/api/portraits/women/34.jpg"),
-      Friend("23", "Kai Nakamura", "@kainakamura", avatarUrl = "https://randomuser.me/api/portraits/men/35.jpg"),
-      Friend("24", "Valentina Costa", "@valentinacosta", avatarUrl = "https://randomuser.me/api/portraits/women/36.jpg"),
-      Friend("25", "Jonas Berg", "@jonasberg", avatarUrl = "https://randomuser.me/api/portraits/men/37.jpg"),
-      Friend("26", "Freya Olsen", "@freyaolsen", avatarUrl = "https://randomuser.me/api/portraits/women/38.jpg"),
-      Friend("27", "Marcus Hall", "@marcushall", avatarUrl = "https://randomuser.me/api/portraits/men/39.jpg"),
-      Friend("28", "Elena Petrova", "@elenapetrova", avatarUrl = "https://randomuser.me/api/portraits/women/40.jpg")
+      Friend("10", "Amelia Rossi", "@ameliarossi", avatarUrl = "https://randomuser.me/api/portraits/women/22.jpg")
     )
   }
 
   suspend fun loadFriendCount(): Result<Unit> = runCatching {
-
     // TODO: replace with API/DB call that fetches count only
-    _friendCount.value = 28
+    _friendCount.value = 10
   }
 
   fun removeFriend(id: String) {
-
     // TODO: replace with API/DB call
     _friends.update { friends -> friends.filterNot { it.id == id } }
     _friendCount.value = _friends.value.size
   }
 
   fun blockFriend(id: String) {
-
     // TODO: replace with API/DB call
     _friends.update { friends -> friends.filterNot { it.id == id } }
     _friendCount.value = _friends.value.size

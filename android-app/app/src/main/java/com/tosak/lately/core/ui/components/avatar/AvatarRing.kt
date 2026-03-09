@@ -1,4 +1,4 @@
-package com.tosak.lately.features.profile.components
+package com.tosak.lately.core.ui.components.avatar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,10 +19,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 
 /**
- * Avatar with animated gradient ring.
+ * Gradient ring used around the avatar images.
  */
 @Composable
-fun ProfileAvatar(
+fun AvatarRing(
   modifier: Modifier = Modifier,
   size: Int = 96,
   onClick: (() -> Unit)? = null,

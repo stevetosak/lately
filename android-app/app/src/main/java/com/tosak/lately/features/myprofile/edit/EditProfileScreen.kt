@@ -1,4 +1,4 @@
-package com.tosak.lately.features.profile.edit
+package com.tosak.lately.features.myprofile.edit
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -30,8 +30,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.tosak.lately.R
-import com.tosak.lately.core.ui.components.AppTopBar
-import com.tosak.lately.features.profile.components.ProfileAvatar
+import com.tosak.lately.core.ui.components.bars.AppTopBar
+import com.tosak.lately.core.ui.components.avatar.AvatarRing
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,13 +42,12 @@ fun EditProfileScreen(
   val viewModel: EditProfileViewModel = hiltViewModel()
   val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-  var name     by rememberSaveable { mutableStateOf(uiState.displayName) }
+  var name by rememberSaveable { mutableStateOf(uiState.displayName) }
   var username by rememberSaveable { mutableStateOf(uiState.username) }
-  var bio      by rememberSaveable { mutableStateOf(uiState.bio) }
-  var phone    by rememberSaveable { mutableStateOf(uiState.phone) }
+  var bio by rememberSaveable { mutableStateOf(uiState.bio) }
+  var phone by rememberSaveable { mutableStateOf(uiState.phone) }
 
   var selectedAvatarUri by rememberSaveable { mutableStateOf<Uri?>(null) }
-
 
   val galleryLauncher = rememberLauncherForActivityResult(
     contract = ActivityResultContracts.GetContent()
@@ -100,7 +99,7 @@ fun EditProfileScreen(
 
       Spacer(Modifier.height(24.dp))
 
-      ProfileAvatar(
+      AvatarRing(
         size          = 108,
         onClick       = { galleryLauncher.launch("image/*") },
         showEditBadge = true

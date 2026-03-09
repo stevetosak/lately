@@ -1,15 +1,19 @@
 package com.tosak.lately.features.profile.components
 
 import androidx.compose.runtime.Composable
-import com.tosak.lately.core.ui.components.ConfirmDialog
+import com.tosak.lately.core.ui.components.dialogs.ConfirmDialog
 
 @Composable
-fun DeactivateAccountDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
+fun UnfriendDialog(
+  displayName: String,
+  onConfirm: () -> Unit,
+  onDismiss: () -> Unit
+) {
   ConfirmDialog(
-    title        = "Deactivate Account",
-    body         = "Your account will be deactivated and others won't be able to find you. Are you sure?",
-    confirmLabel = "Deactivate",
-    onConfirm    = onConfirm,
-    onDismiss    = onDismiss
+    title = "Unfriend $displayName?",
+    body = "$displayName will be removed from your friends list.",
+    confirmLabel = "Unfriend",
+    onConfirm = onConfirm,
+    onDismiss = onDismiss
   )
 }

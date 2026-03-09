@@ -1,46 +1,34 @@
-package com.tosak.lately.features.profile.components
+package com.tosak.lately.features.myprofile.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import com.tosak.lately.R
-import com.tosak.lately.features.profile.ProfileUiState
+import com.tosak.lately.core.ui.components.avatar.AvatarRing
+import com.tosak.lately.core.ui.components.avatar.Avatar
+import com.tosak.lately.features.myprofile.MyProfileUiState
 
 @Composable
-fun ProfileHeader(
-  uiState: ProfileUiState,
+fun MyProfileCard(
+  uiState: MyProfileUiState,
   onFriendsClick: () -> Unit
 ) {
-  ProfileAvatar(size = 96) {
-    AsyncImage(
-      model = uiState.avatarUrl,
-      contentDescription = "${uiState.displayName} avatar",
-      modifier = Modifier
-        .fillMaxSize()
-        .clip(CircleShape),
-      contentScale = ContentScale.Crop,
-      placeholder = painterResource(R.drawable.ic_placeholder),
-      error = painterResource(R.drawable.ic_fallback)
+  AvatarRing(size = 96) {
+    Avatar(
+      name = "${uiState.displayName} avatar",
+      avatarUrl = uiState.avatarUrl
     )
   }
-
   Spacer(Modifier.height(20.dp))
   Text(
     text = uiState.displayName.ifBlank { "Your Name" },

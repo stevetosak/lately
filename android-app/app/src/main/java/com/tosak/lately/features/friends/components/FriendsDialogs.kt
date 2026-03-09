@@ -1,7 +1,7 @@
 package com.tosak.lately.features.friends.components
 
 import androidx.compose.runtime.Composable
-import com.tosak.lately.core.ui.components.ConfirmDialog
+import com.tosak.lately.core.ui.components.dialogs.ConfirmDialog
 
 @Composable
 fun RemoveFriendDialog(displayName: String, onConfirm: () -> Unit, onDismiss: () -> Unit) {

@@ -1,4 +1,4 @@
-package com.tosak.lately.features.profile.edit
+package com.tosak.lately.features.myprofile.edit
 
 data class EditProfileUiState(
   val displayName: String = "",

@@ -1,4 +1,4 @@
-package com.tosak.lately.core.ui.components
+package com.tosak.lately.core.ui.components.dialogs
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog

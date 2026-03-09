@@ -1,8 +1,8 @@
-package com.tosak.lately.features.profile.edit
+package com.tosak.lately.features.myprofile.edit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tosak.lately.core.data.repository.ProfileRepository
+import com.tosak.lately.core.data.repository.MyProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
-  private val repository: ProfileRepository
+  private val repository: MyProfileRepository
 ) : ViewModel() {
 
   private val _isLoading = MutableStateFlow(false)
@@ -42,7 +42,6 @@ class EditProfileViewModel @Inject constructor(
   fun updateAvatar(url: String) = repository.updateAvatar(url)
 
   fun saveProfile() {
-
     viewModelScope.launch {
       _isLoading.value = true
       _errorMessage.value = null

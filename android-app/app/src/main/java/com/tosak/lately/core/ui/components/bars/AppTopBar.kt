@@ -1,4 +1,4 @@
-package com.tosak.lately.core.ui.components
+package com.tosak.lately.core.ui.components.bars
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets

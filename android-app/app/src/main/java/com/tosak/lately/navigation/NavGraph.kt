@@ -13,8 +13,9 @@ import com.tosak.lately.features.chats.MessagesScreen
 import com.tosak.lately.features.map.MapScreen
 import com.tosak.lately.features.notifications.NotificationsScreen
 import com.tosak.lately.features.archivedstories.ArchivedStoriesScreen
-import com.tosak.lately.features.profile.edit.EditProfileScreen
+import com.tosak.lately.features.myprofile.edit.EditProfileScreen
 import com.tosak.lately.features.friends.FriendsScreen
+import com.tosak.lately.features.myprofile.MyProfileScreen
 import com.tosak.lately.features.profile.ProfileScreen
 import com.tosak.lately.features.search.SearchScreen
 import com.tosak.lately.features.settings.SettingsScreen
@@ -38,11 +39,15 @@ fun NavGraph(
     }
 
     composable(Destinations.Search.route) {
-      SearchScreen()
+      SearchScreen(navController)
     }
 
     composable(Destinations.Notifications.route) {
       NotificationsScreen()
+    }
+
+    composable(Destinations.MyProfile.route) {
+      MyProfileScreen(navController = navController)
     }
 
     composable(Destinations.Profile.route) {
@@ -84,5 +89,23 @@ fun NavGraph(
     ) {
       FriendsScreen(navController = navController)
     }
+
+//    composable(
+//      route           = Destinations.StoryViewer.route,
+//      enterTransition = { slideInVertically { it } },
+//      exitTransition  = { slideOutVertically { it } }
+//    ) { backStackEntry ->
+//      val parentEntry = remember(backStackEntry) {
+//        navController.getBackStackEntry(Destinations.ArchivedStories.route)
+//      }
+//      val viewModel: ArchivedStoriesViewModel = hiltViewModel(parentEntry)
+//      val storyId = backStackEntry.arguments?.getString("storyId") ?: return@composable
+//
+//      StoryViewerScreen(
+//        navController = navController,
+//        storyId       = storyId,
+//        viewModel     = viewModel
+//      )
+//    }
   }
 }

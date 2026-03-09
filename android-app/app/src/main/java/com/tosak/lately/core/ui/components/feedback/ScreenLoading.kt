@@ -1,4 +1,4 @@
-package com.tosak.lately.core.ui.components
+package com.tosak.lately.core.ui.components.feedback
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

@@ -11,8 +11,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.tosak.lately.core.ui.components.AppTopBar
-import com.tosak.lately.core.ui.components.ScreenLoading
+import com.tosak.lately.core.ui.components.bars.AppTopBar
+import com.tosak.lately.core.ui.components.feedback.ScreenLoading
 import com.tosak.lately.features.archivedstories.components.ArchivedStoriesGrid
 
 @OptIn(ExperimentalMaterial3Api::class)

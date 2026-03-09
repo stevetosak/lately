@@ -16,11 +16,13 @@ import com.tosak.lately.features.friends.Friend
 @Composable
 fun FriendCard(
   friend: Friend,
+  onClick: () -> Unit,
   onMessageClick: () -> Unit,
   onRemoveClick: () -> Unit,
   onBlockClick: () -> Unit
 ) {
   Surface(
+    onClick = onClick,
     modifier = Modifier.fillMaxWidth(),
     shape = RoundedCornerShape(16.dp),
     color = MaterialTheme.colorScheme.surface,
@@ -29,7 +31,7 @@ fun FriendCard(
     Row(
       modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
       verticalAlignment = Alignment.CenterVertically,
-      horizontalArrangement = Arrangement.spacedBy(14.dp)
+      horizontalArrangement = Arrangement.spacedBy(14.dp),
     ) {
       FriendAvatar(friend.displayName, avatarUrl = friend.avatarUrl)
 

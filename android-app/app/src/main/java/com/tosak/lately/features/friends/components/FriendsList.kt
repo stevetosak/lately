@@ -16,7 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.tosak.lately.features.friends.Friend
+import com.tosak.lately.navigation.Destinations
 
 
 @Composable
@@ -28,7 +30,8 @@ fun FriendsList(
   hasNoFriends: Boolean,
   onMessageClick: (Friend) -> Unit,
   onRemoveClick: (Friend) -> Unit,
-  onBlockClick: (Friend) -> Unit
+  onBlockClick: (Friend) -> Unit,
+  navController: NavController
 ) {
 
   val listState = rememberLazyListState()
@@ -59,9 +62,10 @@ fun FriendsList(
       items(filteredFriends, key = { it.id }) { friend ->
         FriendCard(
           friend = friend,
+          onClick = { navController.navigate(Destinations.Profile.route(friend.id)) },
           onMessageClick = { onMessageClick(friend) },
           onRemoveClick = { onRemoveClick(friend) },
-          onBlockClick = { onBlockClick(friend) }
+          onBlockClick = { onBlockClick(friend) },
         )
       }
     }

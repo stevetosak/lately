@@ -31,7 +31,7 @@ import com.mapbox.geojson.Point
 import com.mapbox.maps.dsl.cameraOptions
 import com.mapbox.maps.extension.compose.MapboxMap
 import com.mapbox.maps.extension.compose.animation.viewport.rememberMapViewportState
-import com.tosak.lately.core.ui.components.LatelyTopBar
+import com.tosak.lately.core.ui.components.bars.LatelyTopBar
 import com.tosak.lately.features.map.components.CameraMode
 import com.tosak.lately.features.map.components.CameraModeButton
 import com.tosak.lately.features.map.components.CurrentLocationButton

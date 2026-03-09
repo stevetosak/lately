@@ -1,4 +1,4 @@
-package com.tosak.lately.core.ui.components
+package com.tosak.lately.core.ui.components.bars
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
@@ -58,7 +58,7 @@ fun LatelyBottomBar(navController: NavHostController) {
   val sideItems = listOf(
     NavItem(Destinations.Search, Icons.Filled.Search, Icons.Outlined.Search),
     NavItem(Destinations.Notifications, Icons.Filled.Notifications, Icons.Outlined.Notifications),
-    NavItem(Destinations.Profile, Icons.Filled.Person, Icons.Outlined.Person),
+    NavItem(Destinations.MyProfile, Icons.Filled.Person, Icons.Outlined.Person),
     NavItem(Destinations.Settings, Icons.Filled.Settings, Icons.Outlined.Settings),
   )
 

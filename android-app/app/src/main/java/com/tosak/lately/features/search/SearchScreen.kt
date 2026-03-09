@@ -1,51 +1,44 @@
 package com.tosak.lately.features.search
 
-import androidx.compose.runtime.Composable
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Icon
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import com.tosak.lately.core.ui.components.bars.AppTopBar
+import com.tosak.lately.features.search.components.SearchContent
 
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchScreen() {
-  Box(
-    modifier = Modifier
-      .fillMaxSize()
-      .background(MaterialTheme.colorScheme.surface),
-    contentAlignment = Alignment.Center
-  ) {
-    Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
-      verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-      Icon(
-        imageVector = Icons.Default.Search,
-        contentDescription = null,
-        modifier = Modifier.size(64.dp),
-        tint = MaterialTheme.colorScheme.primary
+fun SearchScreen(
+  navController: NavController
+) {
+  val viewModel: SearchViewModel = hiltViewModel()
+  val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+  Scaffold(
+    topBar = {
+      AppTopBar(
+        title = "Search",
+        navController = navController
       )
-      Text(
-        text = "Search Screen",
-        style = MaterialTheme.typography.headlineMedium,
-        fontWeight = FontWeight.Bold
-      )
-      Text(
-        text = "Search",
-        style = MaterialTheme.typography.bodyLarge,
-        color = MaterialTheme.colorScheme.onSurfaceVariant
-      )
-    }
+    },
+    containerColor = MaterialTheme.colorScheme.background
+  ) { innerPadding ->
+    SearchContent(
+      innerPadding = innerPadding,
+      uiState = uiState,
+      onQueryChange = viewModel::onQueryChange,
+      onHistoryItemClick = viewModel::onHistoryItemClick,
+      onRemoveHistoryItem = viewModel::removeHistoryItem,
+      onClearHistory = viewModel::clearHistory,
+      modifier = Modifier.fillMaxSize(),
+      navController = navController
+    )
   }
 }
