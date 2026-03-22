@@ -7,10 +7,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class FakeStoryRepository @Inject constructor(): StoryRepository {
+class FakeStoryRepository @Inject constructor() : StoryRepository {
 
-    override fun getStories(location: Location, radius: Int): List<Story> {
-        return allStories.filter { story ->
+    override suspend fun getStories(location: Location, radius: Int): Result<List<Story>> = runCatching {
+        allStories.filter { story ->
             val storyLocation = Location("").apply {
                 latitude = story.location.latitude
                 longitude = story.location.longitude

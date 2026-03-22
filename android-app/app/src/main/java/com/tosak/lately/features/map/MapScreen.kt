@@ -66,7 +66,6 @@ fun MapScreen(navController: NavController) {
         }
     }
 
-
     LaunchedEffect(mapViewportState.cameraState) {
         currentCameraOptions = cameraOptions {
             zoom(mapViewportState.cameraState?.zoom)
@@ -75,8 +74,6 @@ fun MapScreen(navController: NavController) {
             center(mapViewportState.cameraState?.center)
         }
     }
-
-
 
     Scaffold(
         topBar = {
@@ -102,7 +99,11 @@ fun MapScreen(navController: NavController) {
                 compass = {}
             ) {
                 UserLocationEffect(userLocation, testUser)
-                StoryEffect(userLocation = userLocation, storyViewModel = storyViewModel)
+                StoryEffect(
+                    userLocation = userLocation,
+                    storyViewModel = storyViewModel,
+                    navController = navController
+                )
                 MapLocationEffect(mapViewModel = mapViewModel, mapViewportState = mapViewportState)
             }
 
@@ -112,7 +113,6 @@ fun MapScreen(navController: NavController) {
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-
                         CircularProgressIndicator();
                     }
                 }
@@ -127,10 +127,11 @@ fun MapScreen(navController: NavController) {
                 CurrentLocationButton(flyToCurrentLocation = {
                     userLocation?.let {
                         val point = Point.fromLngLat(it.longitude,it.latitude)
-                        mapViewportState.flyTo(cameraOptions {
+                        mapViewportState.flyTo(
+                            cameraOptions {
                             center(point)
-                            zoom(CameraMode.STREET.zoom)
-                            pitch(CameraMode.STREET.pitch)
+                            zoom(CameraMode.OVERVIEW.zoom)
+                            pitch(CameraMode.OVERVIEW.pitch)
                             bearing(currentCameraOptions.bearing)
                         })
                     }
