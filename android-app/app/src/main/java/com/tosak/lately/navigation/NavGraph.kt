@@ -12,13 +12,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.tosak.lately.features.chats.MessagesScreen
+import androidx.navigation.navArgument
 import com.tosak.lately.features.map.MapScreen
 import com.tosak.lately.features.notifications.NotificationsScreen
 import com.tosak.lately.features.archivedstories.ArchivedStoriesScreen
 import com.tosak.lately.features.archivedstories.ArchivedStoriesViewModel
+import com.tosak.lately.features.chats.ChatsScreen
+import com.tosak.lately.features.chats.chat.ChatScreen
 import com.tosak.lately.features.stories.viewer.StoryViewerScreen
 import com.tosak.lately.features.myprofile.edit.EditProfileScreen
 import com.tosak.lately.features.friends.FriendsScreen
@@ -68,12 +71,19 @@ fun NavGraph(
       SettingsScreen()
     }
 
+    composable(route = Destinations.Chats.route) {
+      ChatsScreen(navController)
+    }
+
     composable(
-      route = Destinations.Messages.route,
+      route = Destinations.Chat.route,
+      arguments = listOf(
+        navArgument("userId") { type = NavType.StringType }
+      ),
       enterTransition = { slideInHorizontally(initialOffsetX = { it }) },
       exitTransition = { slideOutHorizontally(targetOffsetX = { it }) }
     ) {
-      MessagesScreen(navController)
+      ChatScreen(navController = navController)
     }
 
     composable(

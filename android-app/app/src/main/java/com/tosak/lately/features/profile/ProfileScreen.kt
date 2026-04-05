@@ -26,61 +26,70 @@ import com.tosak.lately.features.profile.components.ProfileAchievements
 import com.tosak.lately.features.profile.components.ProfileActions
 import com.tosak.lately.features.profile.components.ProfileCard
 import com.tosak.lately.features.profile.components.UnfriendDialog
+import com.tosak.lately.navigation.Destinations
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
-  navController: NavController
+    navController: NavController
 ) {
-  val viewModel: ProfileViewModel = hiltViewModel()
-  val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val viewModel: ProfileViewModel = hiltViewModel()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-  var showUnfriendDialog by remember { mutableStateOf(false) }
+    var showUnfriendDialog by remember { mutableStateOf(false) }
 
-  Scaffold(
-    topBar = {
-      AppTopBar(
-        title = "",
-        navController = navController
-      )
-    },
-    containerColor = MaterialTheme.colorScheme.background
-  ) { innerPadding ->
-    if (uiState.isLoading || uiState.user == null) {
-      ScreenLoading()
-    } else {
-      Column(
-        modifier = Modifier
-          .fillMaxSize()
-          .padding(innerPadding)
-          .verticalScroll(rememberScrollState())
-          .padding(horizontal = 16.dp, vertical = 12.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-      ) {
-        ProfileCard(user = uiState.user!!)
-        ProfileActions(
-          friendshipStatus = uiState.user!!.friendshipStatus,
-          onSendRequest = viewModel::sendFriendRequest,
-          onCancelRequest = viewModel::cancelFriendRequest,
-          onUnfriendClick = { showUnfriendDialog = true },
-          onMessageClick = { /* TODO: navigate to messages */ },
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 12.dp)
-        )
-        ProfileAchievements()
-      }
+    Scaffold(
+        topBar = {
+            AppTopBar(
+                title = "",
+                navController = navController
+            )
+        },
+        containerColor = MaterialTheme.colorScheme.background
+    ) { innerPadding ->
+        if (uiState.isLoading || uiState.user == null) {
+            ScreenLoading()
+        } else {
+            Column(
+                modifier = Modifier
+                  .fillMaxSize()
+                  .padding(innerPadding)
+                  .verticalScroll(rememberScrollState())
+                  .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                ProfileCard(user = uiState.user!!)
+                ProfileActions(
+                    friendshipStatus = uiState.user!!.friendshipStatus,
+                    onSendRequest = viewModel::sendFriendRequest,
+                    onCancelRequest = viewModel::cancelFriendRequest,
+                    onUnfriendClick = { showUnfriendDialog = true },
+                    onMessageClick = {
+                        navController.navigate(Destinations.Chat.route(uiState.user!!.id)) {
+                            launchSingleTop = true
+
+                            popUpTo(Destinations.Chat.route(uiState.user!!.id)) {
+                                inclusive = false
+                            }
+                        }
+                    },
+                    modifier = Modifier
+                      .fillMaxWidth()
+                      .padding(top = 12.dp)
+                )
+                ProfileAchievements()
+            }
+        }
     }
-  }
 
-  if (showUnfriendDialog) {
-    UnfriendDialog(
-      displayName = uiState.user?.displayName.orEmpty(),
-      onConfirm = {
-        viewModel.removeFriend()
-        showUnfriendDialog = false
-      },
-      onDismiss = { showUnfriendDialog = false }
-    )
-  }
+    if (showUnfriendDialog) {
+        UnfriendDialog(
+            displayName = uiState.user?.displayName.orEmpty(),
+            onConfirm = {
+                viewModel.removeFriend()
+                showUnfriendDialog = false
+            },
+            onDismiss = { showUnfriendDialog = false }
+        )
+    }
 }

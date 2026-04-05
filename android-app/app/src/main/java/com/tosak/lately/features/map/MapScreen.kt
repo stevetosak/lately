@@ -80,7 +80,7 @@ fun MapScreen(navController: NavController) {
             LatelyTopBar(
                 onCameraClick = {},
                 onChatClick = {
-                    navController.navigate(Destinations.Messages.route)
+                    navController.navigate(Destinations.Chats.route)
                 }
             )
         }
