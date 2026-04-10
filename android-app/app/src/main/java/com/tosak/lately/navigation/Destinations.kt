@@ -9,7 +9,11 @@ sealed class Destinations(val route: String) {
   }
   object Search : Destinations("search")
   object Notifications : Destinations("notifications")
-  object Messages : Destinations("messages")
+  object Chats : Destinations("messages")
+
+  object Chat : Destinations("messages/{userId}") {
+    fun route(userId: String) = "messages/$userId"
+  }
   object MyProfile : Destinations("my-profile")
 
   object Profile : Destinations("profile/{profileId}") {
