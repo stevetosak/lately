@@ -3,9 +3,14 @@ package com.tosak.lately.navigation
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,12 +18,17 @@ import com.tosak.lately.features.chats.MessagesScreen
 import com.tosak.lately.features.map.MapScreen
 import com.tosak.lately.features.notifications.NotificationsScreen
 import com.tosak.lately.features.archivedstories.ArchivedStoriesScreen
+import com.tosak.lately.features.archivedstories.ArchivedStoriesViewModel
+import com.tosak.lately.features.stories.viewer.StoryViewerScreen
 import com.tosak.lately.features.myprofile.edit.EditProfileScreen
 import com.tosak.lately.features.friends.FriendsScreen
 import com.tosak.lately.features.myprofile.MyProfileScreen
 import com.tosak.lately.features.profile.ProfileScreen
 import com.tosak.lately.features.search.SearchScreen
 import com.tosak.lately.features.settings.SettingsScreen
+import com.tosak.lately.features.stories.StoryViewModel
+import com.tosak.lately.features.stories.viewer.StoryViewerViewModel
+import com.tosak.lately.features.stories.viewer.toViewerItem
 
 @Composable
 fun NavGraph(
@@ -90,22 +100,60 @@ fun NavGraph(
       FriendsScreen(navController = navController)
     }
 
-//    composable(
-//      route           = Destinations.StoryViewer.route,
-//      enterTransition = { slideInVertically { it } },
-//      exitTransition  = { slideOutVertically { it } }
-//    ) { backStackEntry ->
-//      val parentEntry = remember(backStackEntry) {
-//        navController.getBackStackEntry(Destinations.ArchivedStories.route)
-//      }
-//      val viewModel: ArchivedStoriesViewModel = hiltViewModel(parentEntry)
-//      val storyId = backStackEntry.arguments?.getString("storyId") ?: return@composable
-//
-//      StoryViewerScreen(
-//        navController = navController,
-//        storyId       = storyId,
-//        viewModel     = viewModel
-//      )
-//    }
+    composable(
+      route           = Destinations.ArchivedStoryViewer.route,
+      enterTransition = { slideInVertically { it } },
+      exitTransition  = { slideOutVertically { it } }
+    ) { backStackEntry ->
+
+      val parentEntry = remember(backStackEntry) {
+        navController.getBackStackEntry(Destinations.ArchivedStories.route)
+      }
+
+      val archivedVm: ArchivedStoriesViewModel = hiltViewModel(parentEntry)
+      val viewerVm: StoryViewerViewModel = hiltViewModel(backStackEntry)
+      val storyId = backStackEntry.arguments?.getString("storyId") ?: return@composable
+
+      LaunchedEffect(Unit) {
+        val items = archivedVm.getCachedArchivedStories().map { it.toViewerItem() }
+        viewerVm.load(items)
+      }
+
+      StoryViewerScreen(
+        navController = navController,
+        storyId       = storyId,
+        viewModel     = viewerVm
+      )
+    }
+
+    composable(
+      route           = Destinations.LiveStoryViewer.route,
+      enterTransition = { slideInVertically { it } },
+      exitTransition  = { slideOutVertically { it } }
+    ) { backStackEntry ->
+
+      val parentEntry = remember(backStackEntry) {
+        navController.getBackStackEntry(Destinations.Map.route)
+      }
+
+      val storyVm: StoryViewModel = hiltViewModel(parentEntry)
+      val viewerVm: StoryViewerViewModel = hiltViewModel(backStackEntry)
+      val storyId = backStackEntry.arguments?.getString("storyId") ?: return@composable
+
+      LaunchedEffect(Unit) {
+        val item = storyVm.getCachedNearbyStories()
+          .firstOrNull { it.id == storyId }
+          ?.toViewerItem()
+          ?: return@LaunchedEffect
+
+        viewerVm.load(listOf(item))
+      }
+
+      StoryViewerScreen(
+        navController = navController,
+        storyId       = storyId,
+        viewModel     = viewerVm
+      )
+    }
   }
 }

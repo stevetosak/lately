@@ -34,6 +34,8 @@ import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.tosak.lately.features.archivedstories.ArchivedStory
+import com.tosak.lately.features.stories.viewer.toRelativeTimeString
+import java.time.Instant
 
 @Composable
 fun ArchivedStoryCard(
@@ -48,7 +50,7 @@ fun ArchivedStoryCard(
       .clip(RoundedCornerShape(20.dp))
       .clickable(onClick = onClick)
   ) {
-    StoryThumbnail(thumbnailUrl = story.thumbnailUrl, title = story.title)
+    StoryThumbnail(thumbnailUrl = story.mediaUrl, title = story.caption ?: "")
 
     StoryDateBadge(
       createdAt = story.createdAt,
@@ -58,8 +60,8 @@ fun ArchivedStoryCard(
     )
 
     StoryInfo(
-      title = story.title,
-      locationLabel = story.locationLabel,
+      title = story.caption ?: "",
+      locationLabel = story.location.placeName,
       modifier = Modifier
         .align(Alignment.BottomStart)
         .padding(12.dp)
@@ -88,7 +90,7 @@ private fun StoryThumbnail(
 
 @Composable
 private fun StoryDateBadge(
-  createdAt: String,
+  createdAt: Instant,
   modifier: Modifier = Modifier
 ) {
   Surface(
@@ -98,7 +100,7 @@ private fun StoryDateBadge(
     tonalElevation = 0.dp
   ) {
     Text(
-      text = createdAt,
+      text = createdAt.toRelativeTimeString(),
       style = MaterialTheme.typography.labelSmall,
       color = Color.White.copy(alpha = 0.9f),
       modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)

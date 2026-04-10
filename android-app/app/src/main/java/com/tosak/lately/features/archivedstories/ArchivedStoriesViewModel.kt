@@ -12,6 +12,12 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+data class ArchivedStoriesUiState(
+  val archivedStories: List<ArchivedStory> = emptyList(),
+  val isLoading: Boolean = true,
+  val errorMessage: String? = null
+)
+
 @HiltViewModel
 class ArchivedStoriesViewModel @Inject constructor(
   private val archivedStoriesRepository: ArchivedStoriesRepository
@@ -45,5 +51,9 @@ class ArchivedStoriesViewModel @Inject constructor(
 
       _isLoading.value = false
     }
+  }
+
+  fun getCachedArchivedStories(): List<ArchivedStory> {
+    return uiState.value.archivedStories
   }
 }

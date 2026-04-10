@@ -32,7 +32,7 @@ data class Story(
 data class StoryLocation(
     val latitude: Double,
     val longitude: Double,
-    val placeName: String?,              // e.g. "Central Park"
+    val placeName: String,              // e.g. "Central Park"
     val city: String?,
     val country: String?,
     val geohash: String?,                // for efficient proximity queries
@@ -43,7 +43,6 @@ enum class MediaType {
 }
 
 enum class StoryVisibility {
-    PUBLIC,         // anyone nearby can see
+    PUBLIC,
     FOLLOWERS_ONLY,
-    PRIVATE
 }
