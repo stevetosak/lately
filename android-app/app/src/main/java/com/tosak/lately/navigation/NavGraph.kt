@@ -56,7 +56,7 @@ fun NavGraph(
     }
 
     composable(Destinations.Notifications.route) {
-      NotificationsScreen()
+      NotificationsScreen(navController)
     }
 
     composable(Destinations.MyProfile.route) {
