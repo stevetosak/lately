@@ -32,7 +32,7 @@ fun StoryEffect(
             ViewAnnotation(
                 options = viewAnnotationOptions {
                     geometry(point)
-                    allowOverlap(false)
+                    allowOverlap(true)
                 }
             ) {
                 UserMarker(

@@ -69,24 +69,26 @@ class SearchRepository @Inject constructor() {
     _searchHistory.value = emptyList()
   }
 
-  private val MOCK_USERS = listOf(
-    SearchUser("1", "Jordan Lee", "@jordanlee", "https://randomuser.me/api/portraits/men/7.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("2", "Maya Patel", "@mayapatel", "https://randomuser.me/api/portraits/women/10.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("3", "Chris Novak", "@chrisnovak", "https://randomuser.me/api/portraits/men/14.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("4", "Sofia Reyes", "@sofiareyes", "https://randomuser.me/api/portraits/women/2.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("5", "Ethan Brooks", "@ethanbrooks", "https://randomuser.me/api/portraits/men/15.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("6", "Priya Sharma", "@priyasharma", "https://randomuser.me/api/portraits/women/8.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("7", "Luca Ferraro", "@lucaferraro", "https://randomuser.me/api/portraits/men/13.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("8", "Nadia Wolff", "@nadiawolff", "https://randomuser.me/api/portraits/women/17.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("9", "Oliver Chen", "@oliverchen", "https://randomuser.me/api/portraits/men/21.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("10", "Amelia Rossi", "@ameliarossi", "https://randomuser.me/api/portraits/women/22.jpg", FriendshipStatus.FRIENDS),
-    SearchUser("29", "Alice Wang", "@alicewang", "https://randomuser.me/api/portraits/women/50.jpg", FriendshipStatus.NONE),
-    SearchUser("30", "Ben Carter", "@bencarter", "https://randomuser.me/api/portraits/men/50.jpg", FriendshipStatus.REQUEST_SENT),
-    SearchUser("31", "Carmen López", "@carmenlopez", "https://randomuser.me/api/portraits/women/51.jpg", FriendshipStatus.NONE),
-    SearchUser("32", "David Kim", "@davidkim", "https://randomuser.me/api/portraits/men/51.jpg", FriendshipStatus.REQUEST_SENT),
-    SearchUser("33", "Eva Fischer", "@evafischer", "https://randomuser.me/api/portraits/women/52.jpg", FriendshipStatus.NONE),
-    SearchUser("34", "Frank Osei", "@frankosei", "https://randomuser.me/api/portraits/men/52.jpg", FriendshipStatus.REQUEST_SENT),
-    SearchUser("35", "Grace Lin", "@gracelin", "https://randomuser.me/api/portraits/women/53.jpg", FriendshipStatus.NONE),
-    SearchUser("36", "Hassan Ali", "@hassanali", "https://randomuser.me/api/portraits/men/53.jpg", FriendshipStatus.REQUEST_SENT),
-  )
+  companion object {
+    val MOCK_USERS = listOf(
+      SearchUser("1", "Jordan Lee", "@jordanlee", "https://randomuser.me/api/portraits/men/7.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("2", "Maya Patel", "@mayapatel", "https://randomuser.me/api/portraits/women/10.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("3", "Chris Novak", "@chrisnovak", "https://randomuser.me/api/portraits/men/14.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("4", "Sofia Reyes", "@sofiareyes", "https://randomuser.me/api/portraits/women/2.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("5", "Ethan Brooks", "@ethanbrooks", "https://randomuser.me/api/portraits/men/15.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("6", "Priya Sharma", "@priyasharma", "https://randomuser.me/api/portraits/women/8.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("7", "Luca Ferraro", "@lucaferraro", "https://randomuser.me/api/portraits/men/13.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("8", "Nadia Wolff", "@nadiawolff", "https://randomuser.me/api/portraits/women/17.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("9", "Oliver Chen", "@oliverchen", "https://randomuser.me/api/portraits/men/21.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("10", "Amelia Rossi", "@ameliarossi", "https://randomuser.me/api/portraits/women/22.jpg", FriendshipStatus.FRIENDS),
+      SearchUser("29", "Alice Wang", "@alicewang", "https://randomuser.me/api/portraits/women/50.jpg", FriendshipStatus.NONE),
+      SearchUser("30", "Ben Carter", "@bencarter", "https://randomuser.me/api/portraits/men/50.jpg", FriendshipStatus.REQUEST_SENT),
+      SearchUser("31", "Carmen López", "@carmenlopez", "https://randomuser.me/api/portraits/women/51.jpg", FriendshipStatus.NONE),
+      SearchUser("32", "David Kim", "@davidkim", "https://randomuser.me/api/portraits/men/51.jpg", FriendshipStatus.REQUEST_SENT),
+      SearchUser("33", "Eva Fischer", "@evafischer", "https://randomuser.me/api/portraits/women/52.jpg", FriendshipStatus.NONE),
+      SearchUser("34", "Frank Osei", "@frankosei", "https://randomuser.me/api/portraits/men/52.jpg", FriendshipStatus.REQUEST_SENT),
+      SearchUser("35", "Grace Lin", "@gracelin", "https://randomuser.me/api/portraits/women/53.jpg", FriendshipStatus.NONE),
+      SearchUser("36", "Hassan Ali", "@hassanali", "https://randomuser.me/api/portraits/men/53.jpg", FriendshipStatus.REQUEST_SENT),
+    )
+  }
 }

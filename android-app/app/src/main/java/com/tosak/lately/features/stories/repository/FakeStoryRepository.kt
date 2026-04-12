@@ -1,8 +1,8 @@
 package com.tosak.lately.features.stories.repository
 
+import allStories
 import android.location.Location
 import com.tosak.lately.features.stories.Story
-import com.tosak.lately.features.stories.data.allStories
 import javax.inject.Inject
 import javax.inject.Singleton
 

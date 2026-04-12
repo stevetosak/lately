@@ -1,5 +1,5 @@
-package com.tosak.lately.features.stories.data
-
+import com.tosak.lately.features.search.FriendshipStatus
+import com.tosak.lately.features.search.SearchUser
 import com.tosak.lately.features.stories.MediaType
 import com.tosak.lately.features.stories.Story
 import com.tosak.lately.features.stories.StoryLocation
@@ -7,15 +7,14 @@ import com.tosak.lately.features.stories.StoryVisibility
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
-
 val allStories = listOf(
 
     // --- Skopje Stories ---
     Story(
         id = "story_001",
-        authorId = "user_001",
-        authorUsername = "skopje_mila",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_001",
+        authorId = "1",
+        authorUsername = "@jordanlee",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/men/7.jpg",
         mediaUrl = "https://picsum.photos/seed/story1/400/700",
         mediaType = MediaType.IMAGE,
         caption = "Morning walk by the river 🌊",
@@ -31,14 +30,14 @@ val allStories = listOf(
         createdAt = Instant.now().minus(1, ChronoUnit.HOURS),
         expiresAt = Instant.now().plus(23, ChronoUnit.HOURS),
         viewCount = 34,
-        viewers = listOf("user_002", "user_003"),
+        viewers = listOf("2", "3"),
         visibility = StoryVisibility.PUBLIC
     ),
     Story(
         id = "story_002",
-        authorId = "user_002",
-        authorUsername = "old_bazaar_guy",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_002",
+        authorId = "2",
+        authorUsername = "@davidkim",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/men/51.jpg",
         mediaUrl = "https://picsum.photos/seed/story2/400/700",
         mediaType = MediaType.IMAGE,
         caption = "Fresh burek from the čaršija 🥐",
@@ -54,14 +53,14 @@ val allStories = listOf(
         createdAt = Instant.now().minus(3, ChronoUnit.HOURS),
         expiresAt = Instant.now().plus(21, ChronoUnit.HOURS),
         viewCount = 89,
-        viewers = listOf("user_001", "user_004"),
+        viewers = listOf("1", "4"),
         visibility = StoryVisibility.PUBLIC
     ),
     Story(
         id = "story_003",
-        authorId = "user_003",
-        authorUsername = "kale_fortress_fan",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_003",
+        authorId = "3",
+        authorUsername = "@chrisnovak",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/men/14.jpg",
         mediaUrl = "https://picsum.photos/seed/story3/400/700",
         mediaType = MediaType.VIDEO,
         caption = "View from Kale fortress is unmatched 🏰",
@@ -77,14 +76,14 @@ val allStories = listOf(
         createdAt = Instant.now().minus(2, ChronoUnit.HOURS),
         expiresAt = Instant.now().plus(22, ChronoUnit.HOURS),
         viewCount = 210,
-        viewers = listOf("user_001", "user_002", "user_005"),
+        viewers = listOf("1", "2", "5"),
         visibility = StoryVisibility.PUBLIC
     ),
     Story(
         id = "story_004",
-        authorId = "user_004",
-        authorUsername = "city_park_ana",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_004",
+        authorId = "4",
+        authorUsername = "@sofiareyes",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/women/2.jpg",
         mediaUrl = "https://picsum.photos/seed/story4/400/700",
         mediaType = MediaType.IMAGE,
         caption = "Sunset in City Park 🌅",
@@ -100,14 +99,14 @@ val allStories = listOf(
         createdAt = Instant.now().minus(4, ChronoUnit.HOURS),
         expiresAt = Instant.now().plus(20, ChronoUnit.HOURS),
         viewCount = 56,
-        viewers = listOf("user_003"),
+        viewers = listOf("3"),
         visibility = StoryVisibility.PUBLIC
     ),
     Story(
         id = "story_005",
-        authorId = "user_005",
-        authorUsername = "chair_lift_stefan",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_005",
+        authorId = "5",
+        authorUsername = "@ethanbrooks",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/men/15.jpg",
         mediaUrl = "https://picsum.photos/seed/story5/400/700",
         mediaType = MediaType.VIDEO,
         caption = "Riding up Vodno mountain ⛰️",
@@ -123,14 +122,14 @@ val allStories = listOf(
         createdAt = Instant.now().minus(6, ChronoUnit.HOURS),
         expiresAt = Instant.now().plus(18, ChronoUnit.HOURS),
         viewCount = 143,
-        viewers = listOf("user_001", "user_002"),
+        viewers = listOf("1", "2"),
         visibility = StoryVisibility.PUBLIC
     ),
     Story(
         id = "story_006",
-        authorId = "user_006",
-        authorUsername = "matka_explorer",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_006",
+        authorId = "6",
+        authorUsername = "@priyasharma",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/women/8.jpg",
         mediaUrl = "https://picsum.photos/seed/story6/400/700",
         mediaType = MediaType.IMAGE,
         caption = "Canyon Matka never gets old 🛶",
@@ -146,14 +145,14 @@ val allStories = listOf(
         createdAt = Instant.now().minus(7, ChronoUnit.HOURS),
         expiresAt = Instant.now().plus(17, ChronoUnit.HOURS),
         viewCount = 301,
-        viewers = listOf("user_002", "user_004", "user_005"),
+        viewers = listOf("2", "4", "5"),
         visibility = StoryVisibility.PUBLIC
     ),
     Story(
         id = "story_007",
-        authorId = "user_007",
-        authorUsername = "aerodrom_local",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_007",
+        authorId = "7",
+        authorUsername = "@lucaferraro",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/men/13.jpg",
         mediaUrl = "https://picsum.photos/seed/story7/400/700",
         mediaType = MediaType.IMAGE,
         caption = "New coffee spot just opened here ☕",
@@ -176,9 +175,9 @@ val allStories = listOf(
     // --- Rest of Macedonia ---
     Story(
         id = "story_008",
-        authorId = "user_008",
-        authorUsername = "ohrid_sunset",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_008",
+        authorId = "8",
+        authorUsername = "@nadiawolff",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/women/17.jpg",
         mediaUrl = "https://picsum.photos/seed/story8/400/700",
         mediaType = MediaType.IMAGE,
         caption = "Lake Ohrid in October is pure magic 🌊",
@@ -194,14 +193,14 @@ val allStories = listOf(
         createdAt = Instant.now().minus(8, ChronoUnit.HOURS),
         expiresAt = Instant.now().plus(16, ChronoUnit.HOURS),
         viewCount = 512,
-        viewers = listOf("user_001", "user_003", "user_007"),
+        viewers = listOf("1", "3", "7"),
         visibility = StoryVisibility.PUBLIC
     ),
     Story(
         id = "story_009",
-        authorId = "user_009",
-        authorUsername = "bitola_chronicles",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_009",
+        authorId = "9",
+        authorUsername = "@oliverchen",
+        authorAvatarUrl = "https://randomuser.me/api/portraits/men/21.jpg",
         mediaUrl = "https://picsum.photos/seed/story9/400/700",
         mediaType = MediaType.VIDEO,
         caption = "Sirok Sokak on a Friday night 🎶",
@@ -216,31 +215,5 @@ val allStories = listOf(
         ),
         createdAt = Instant.now().minus(5, ChronoUnit.HOURS),
         expiresAt = Instant.now().plus(19, ChronoUnit.HOURS),
-        viewCount = 78,
-        viewers = listOf("user_002", "user_006"),
-        visibility = StoryVisibility.PUBLIC
-    ),
-    Story(
-        id = "story_010",
-        authorId = "user_010",
-        authorUsername = "tetovo_hiker",
-        authorAvatarUrl = "https://i.pravatar.cc/150?u=user_010",
-        mediaUrl = "https://picsum.photos/seed/story10/400/700",
-        mediaType = MediaType.IMAGE,
-        caption = "Šarena Džamija is breathtaking 🕌",
-        musicTrackId = null,
-        location = StoryLocation(
-            latitude = 41.9994,
-            longitude = 20.9716,
-            placeName = "Šarena Džamija",
-            city = "Tetovo",
-            country = "MK",
-            geohash = "srx1en"
-        ),
-        createdAt = Instant.now().minus(10, ChronoUnit.HOURS),
-        expiresAt = Instant.now().plus(14, ChronoUnit.HOURS),
-        viewCount = 190,
-        viewers = listOf("user_001", "user_005"),
-        visibility = StoryVisibility.PUBLIC
-    ),
+    )
 )
